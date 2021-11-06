@@ -1,14 +1,17 @@
 ---
-title: "My awesome website"
+title: "Sandya Ganesh"
 output: 
   html_document:
-    toc: true
+    toc: false
     toc_float: true
     theme: cerulean
+    source_code: embed
 ---
 
-# Sandya Ganesh's Website
+<p align="center">
+Hello! My name is Sandya, and I'm pursuing my Masters of Public Health at the Columbia Mailman School of Public Health. I'm really interested in harnessing the power of data analytics to solve problems that further health equity and have an impact on healthcare. To learn more about my professional and academic background, see [here](about.html)
+</p>
 
-Here is my [linkedin](https://www.linkedin.com/in/sandya-ganesh/)
-
-To find information on my academic and professional experiences: [about](about.html)
+<p align="center">
+<img width = 40% src="images/headshot_sandya.jpg">
+</p>

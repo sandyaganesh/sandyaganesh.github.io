@@ -7,6 +7,10 @@ output:
     theme: cerulean
 ---
 
-# Resume
+Below you'll find my Resume:
 
-Here's my resume:
+
+Click [here](index.html) to return to the home page
+
+
+
