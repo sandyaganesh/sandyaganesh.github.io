@@ -1,0 +1,14 @@
+---
+title: "My awesome website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+# Sandya Ganesh's Website
+
+Here is my [linkedin](https://www.linkedin.com/in/sandya-ganesh/)
+
+To find information on my academic and professional experiences: [about](about.html)
