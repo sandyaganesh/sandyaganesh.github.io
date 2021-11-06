@@ -13,5 +13,5 @@ Hello! My name is Sandya, and I'm pursuing my Masters of Public Health at the Co
 </p>
 
 <p align="center">
-<img width = 40% src="images/headshot_sandya.jpg">
+<img src="images/headshot_sandya.jpg" style="width:40%">
 </p>
