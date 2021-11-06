@@ -1,0 +1,13 @@
+---
+title: "Plotly"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+This page generates some plotly examples.
+
+Click [here](index.html) to return to the home page
+
+
+
