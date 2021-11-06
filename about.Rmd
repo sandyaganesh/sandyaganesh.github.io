@@ -4,7 +4,6 @@ output:
   html_document:
     toc: true
     toc_float: true
-    theme: cerulean
 ---
 
 Below you will find information regarding my academic background and work experiences:

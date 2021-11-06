@@ -1,0 +1,16 @@
+name: "Sandya Ganesh"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "About"
+      href: about.html
+    - icon: fa-envelope fa-lg
+      href: mailto:<sg3891@columbia.edu>
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/sandya-ganesh/
+    - icon: fa-github fa-lg
+      href: http://github.com/sandyaganesh/
+output:
+  html_document:
+    theme: cerulean
