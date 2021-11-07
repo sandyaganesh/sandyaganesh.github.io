@@ -15,7 +15,6 @@ library(plotly)
 
 ```
 
-
 ```{r data}
 data("rest_inspec") 
 ```
@@ -51,16 +50,22 @@ Column {data-width=350}
 ### Chart 2
 
 ```{r plot2}
+
+mrg <- list(l = 10, r = 10,
+          b = 50, t = 50,
+          pad = 20)
+
 inspection_df %>% 
   filter(boro == "MANHATTAN") %>%
   count(cuisine_description) %>%
   top_n(8, n) %>% 
   mutate(cuisine_description = fct_reorder(cuisine_description, n)) %>% 
-  plot_ly(x = ~cuisine_description, y = ~n, color = ~cuisine_description, type = "bar", colors = "viridis") %>% 
+  plot_ly(x = ~cuisine_description, y = ~n, color = ~cuisine_description, type = "bar", colors = "viridis") %>%
   layout(
-    title = "Top 8 Most Common Cuisine Types in Manhattan Restaraunts",
+    title = "Top 8 Most Common Cuisine \nTypes in Manhattan Restaraunts",
     xaxis = list(title = "Cuisine Types"),
-    yaxis = list(title = "Number of Restaraunts")
+    yaxis = list(title = "Number of Restaraunts"),
+    margin = mrg
   )
 ```
 
@@ -70,9 +75,9 @@ inspection_df %>%
 inspection_df %>%
   sample_n(1000) %>% 
   filter(grade == "A" | grade == "B" | grade == "C") %>%
-  mutate(text_label = str_c("Price: $", score, "\nRating: ", grade)) %>% 
+  mutate(text_label = str_c("Restaraunt: ", dba, "\nScore: ", score)) %>% 
   plot_ly(
-    x = ~inspection_date, y = ~score, type = "scatter", mode = "markers", color = ~boro, colors = "viridis", alpha = 0.5) %>% 
+    x = ~inspection_date, y = ~score, type = "scatter", mode = "markers", color = ~boro, colors = "viridis", text = ~text_label, alpha = 0.5) %>% 
   layout(
     title = "Trends in NYC Restaraunt Scores Over Time",
     xaxis = list(title = "Date"),
