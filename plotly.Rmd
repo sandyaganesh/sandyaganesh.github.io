@@ -5,19 +5,11 @@ output:
     toc: true
     toc_float: true
 ---
-This page generates some plotly examples.
 
 ```{r setup, echo = FALSE, message = FALSE}
 library(tidyverse)
 library(p8105.datasets)
 library(plotly)
-
-knitr::opts_chunk$set(
-  fig.height = 6,
-  fig.width = 8,
-  message = F,
-  warning = F 
-  )
 ```
 
 
@@ -37,17 +29,26 @@ inspection_df = rest_inspec %>%
 ```{r plot1}
 inspection_df %>% 
   mutate(boro = fct_reorder(boro, score)) %>% 
-  plot_ly(y = ~score, color = ~boro, type = "box", colors = "viridis")
-
+  plot_ly(y = ~score, color = ~boro, type = "box", colors = "viridis") %>% 
+    layout(
+    title = "Distribution of Restaraunt Scores by New York Borough",
+    xaxis = list(title = "Borough"),
+    yaxis = list(title = "Scores")
+  )
 ```
 
 ```{r plot2}
 inspection_df %>% 
   filter(boro == "MANHATTAN") %>%
   count(cuisine_description) %>%
-  top_n(15, n) %>% 
+  top_n(8, n) %>% 
   mutate(cuisine_description = fct_reorder(cuisine_description, n)) %>% 
-  plot_ly(x = ~cuisine_description, y = ~n, color = ~cuisine_description, type = "bar", colors = "viridis")
+  plot_ly(x = ~cuisine_description, y = ~n, color = ~cuisine_description, type = "bar", colors = "viridis") %>% 
+  layout(
+    title = "Top 8 Most Common Cuisine Types in Manhattan Restaraunts",
+    xaxis = list(title = "Cuisine Types"),
+    yaxis = list(title = "Number of Restaraunts")
+  )
 ```
 
 ```{r plot3}
@@ -56,9 +57,11 @@ inspection_df %>%
   filter(grade == "A" | grade == "B" | grade == "C") %>%
   mutate(text_label = str_c("Price: $", score, "\nRating: ", grade)) %>% 
   plot_ly(
-    x = ~inspection_date, y = ~score, type = "scatter", mode = "markers", color = ~boro, colors = "viridis", alpha = 0.5)
+    x = ~inspection_date, y = ~score, type = "scatter", mode = "markers", color = ~boro, colors = "viridis", alpha = 0.5) %>% 
+  layout(
+    title = "Trends in NYC Restaraunt Scores Over Time",
+    xaxis = list(title = "Date"),
+    yaxis = list(title = "Restaraunt Score")
+  )
 ```
-
-
-Click [here](index.html) to return to the home page
 
