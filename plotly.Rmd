@@ -55,7 +55,7 @@ inspection_df %>%
 inspection_df %>%
   sample_n(1000) %>% 
   filter(grade == "A" | grade == "B" | grade == "C") %>%
-  mutate(text_label = str_c("Restaraunt:", dba, "\nScore: ", score)) %>% 
+  mutate(text_label = str_c("Restaraunt: ", dba, "\nGrade: ", grade)) %>% 
   plot_ly(
     x = ~inspection_date, y = ~score, type = "scatter", mode = "markers", color = ~boro, colors = "viridis", text = ~text_label, alpha = 0.5) %>% 
   layout(
