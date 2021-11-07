@@ -1,0 +1,77 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+
+knitr::opts_chunk$set(
+  fig.height = 6,
+  fig.width = 8,
+  message = F,
+  warning = F 
+  )
+```
+
+
+```{r data}
+data("rest_inspec") 
+```
+
+```{r filter}
+inspection_df = rest_inspec %>% 
+  select(boro, cuisine_description, score, dba, grade, inspection_date) %>% 
+  drop_na(score) %>% 
+  filter(boro != "Missing") %>% 
+  mutate(cuisine_description = ifelse(as.character(cuisine_description) == "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Latin", as.character(cuisine_description)))
+
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart 1
+
+```{r plot1}
+inspection_df %>% 
+  mutate(boro = fct_reorder(boro, score)) %>% 
+  plot_ly(y = ~score, color = ~boro, type = "box", colors = "viridis")
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r plot2}
+inspection_df %>% 
+  filter(boro == "MANHATTAN") %>%
+  count(cuisine_description) %>%
+  top_n(15, n) %>% 
+  mutate(cuisine_description = fct_reorder(cuisine_description, n)) %>% 
+  plot_ly(x = ~cuisine_description, y = ~n, color = ~cuisine_description, type = "bar", colors = "viridis")
+```
+
+### Chart C
+
+```{r plot3}
+inspection_df %>%
+  sample_n(1000) %>% 
+  filter(grade == "A" | grade == "B" | grade == "C") %>%
+  mutate(text_label = str_c("Price: $", score, "\nRating: ", grade)) %>% 
+  plot_ly(
+    x = ~inspection_date, y = ~score, type = "scatter", mode = "markers", color = ~boro, colors = "viridis", alpha = 0.5)
+```
+
+
+Click [here](index.html) to return to the home page
+
