@@ -64,7 +64,7 @@ inspection_df %>%
   layout(
     title = "Top 8 Most Common Cuisine \nTypes in Manhattan Restaraunts",
     xaxis = list(title = "Cuisine Types"),
-    yaxis = list(title = "Number of Restaraunts"),
+    yaxis = list(title = "Total Restaraunts"),
     margin = mrg
   )
 ```
